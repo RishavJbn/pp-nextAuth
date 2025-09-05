@@ -13,16 +13,28 @@ export default function ProfilePage() {
       await axios.get("/api/users/logout");
       toast.success("Logout successful");
       router.push("/login");
-    } catch (error: any) {
-      console.log(error.message);
-      toast.error(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log(error.message);
+        toast.error(error.message);
+      } else {
+        console.log("An unexpected error occurred.");
+        toast.error("An unexpected error occurred.");
+      }
     }
+  };
+  type UserMeResponse = {
+    data?: {
+      _id?: string | number;
+      // add other fields if needed
+    };
   };
 
   const getUserDetails = async () => {
-    const res = await axios.get("/api/users/me");
+    const res = await axios.get<UserMeResponse>("/api/users/me");
     console.log(res.data);
-    setData(res.data.data._id);
+    const id = res.data?.data?._id;
+    setData(id ? id.toString() : "nothing");
   };
 
   return (

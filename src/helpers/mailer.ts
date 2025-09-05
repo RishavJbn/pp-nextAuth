@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 import { User } from "@/models/user.model";
 import nodemailer from "nodemailer";
 
@@ -8,7 +8,11 @@ interface SendEmailParams {
   userId: string;
 }
 
-export const sendEmail = async ({ email, emailType, userId }: SendEmailParams): Promise<unknown> => {
+export const sendEmail = async ({
+  email,
+  emailType,
+  userId,
+}: SendEmailParams): Promise<nodemailer.SentMessageInfo> => {
   try {
     const hashedToken = await bcrypt.hash(userId.toString(), 10);
 
@@ -36,7 +40,8 @@ export const sendEmail = async ({ email, emailType, userId }: SendEmailParams): 
     const emailOptions = {
       from: "hi@demomailtrap.co",
       to: email,
-      subject: emailType === "VERIFY" ? "Verify your Email" : "Reset your password",
+      subject:
+        emailType === "VERIFY" ? "Verify your Email" : "Reset your password",
       text: "Hello world?",
       html: `<p>Click <a href="${
         process.env.DOMAIN
