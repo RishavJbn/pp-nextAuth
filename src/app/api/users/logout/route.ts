@@ -15,7 +15,7 @@ export async function GET() {
     toast.success("Logged Out Successfully");
 
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
