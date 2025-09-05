@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 
 const StayingHardPage: React.FC = () => {
@@ -34,16 +33,16 @@ const StayingHardPage: React.FC = () => {
               a Navy SEAL, ultramarathon runner, and motivational force.
             </p>
             <p className="text-lg text-gray-300">
-              His philosophy isn't about comfort or shortcuts. It's about
-              embracing the suck, finding your why, and becoming uncommon
+              His philosophy isn&apos;t about comfort or shortcuts. It&apos;s
+              about embracing the suck, finding your why, and becoming uncommon
               amongst the uncommon.
             </p>
           </div>
           <div className="bg-gray-900 p-8 rounded-lg border-l-4 border-red-500">
             <blockquote className="text-2xl font-semibold italic">
-              "You have to build calluses on your brain just like how you build
-              calluses on your hands. Callus your mind through pain and
-              suffering."
+              &ldquo;You have to build calluses on your brain just like how you
+              build calluses on your hands. Callus your mind through pain and
+              suffering.&rdquo;
             </blockquote>
             <cite className="block mt-4 text-red-500 font-medium">
               - David Goggins
@@ -58,7 +57,8 @@ const StayingHardPage: React.FC = () => {
           <div className="text-center mb-12">
             <h2 className="text-5xl font-black mb-4">THE 40% RULE</h2>
             <p className="text-xl text-gray-300">
-              When your mind says you're done, you're really only 40% done
+              When your mind says you&apos;re done, you&apos;re really only 40%
+              done
             </p>
           </div>
 
@@ -83,7 +83,7 @@ const StayingHardPage: React.FC = () => {
               <div className="text-4xl font-bold text-red-500 mb-4">100%</div>
               <h3 className="text-xl font-semibold mb-3">True Potential</h3>
               <p className="text-gray-300">
-                What you're truly capable of when you push past the mental
+                What you&apos;re truly capable of when you push past the mental
                 barriers.
               </p>
             </div>
@@ -108,7 +108,7 @@ const StayingHardPage: React.FC = () => {
             {
               title: "Embrace the Suck",
               description:
-                "Don't run from discomfort - run toward it. Pain is temporary, but quitting lasts forever. Use suffering as fuel for growth.",
+                "Don&apos;t run from discomfort - run toward it. Pain is temporary, but quitting lasts forever. Use suffering as fuel for growth.",
               icon: "🔥",
             },
             {
@@ -126,13 +126,13 @@ const StayingHardPage: React.FC = () => {
             {
               title: "Take Souls",
               description:
-                "When others expect you to quit, that's when you double down. Use their doubt as motivation to exceed their expectations.",
+                "When others expect you to quit, that&apos;s when you double down. Use their doubt as motivation to exceed their expectations.",
               icon: "👹",
             },
             {
               title: "Stay Hard",
               description:
-                "Maintain your edge. Don't get comfortable. Keep pushing boundaries and challenging yourself daily.",
+                "Maintain your edge. Don&apos;t get comfortable. Keep pushing boundaries and challenging yourself daily.",
               icon: "⚡",
             },
           ].map((principle, index) => (
@@ -166,7 +166,8 @@ const StayingHardPage: React.FC = () => {
                 <div className="bg-black/50 p-4 rounded border-l-4 border-red-500">
                   <p className="text-red-300 font-medium">Weak Voice Says:</p>
                   <p className="text-gray-300">
-                    "This is too hard. I can't do this. I should quit."
+                    &ldquo;This is too hard. I can&apos;t do this. I should
+                    quit.&rdquo;
                   </p>
                 </div>
                 <div className="bg-black/50 p-4 rounded border-l-4 border-green-500">
@@ -174,7 +175,7 @@ const StayingHardPage: React.FC = () => {
                     Goggins Voice Says:
                   </p>
                   <p className="text-gray-300">
-                    "Good. This is where I get better. Bring it on."
+                    &ldquo;Good. This is where I get better. Bring it on.&rdquo;
                   </p>
                 </div>
               </div>
@@ -184,7 +185,7 @@ const StayingHardPage: React.FC = () => {
               <h3 className="text-2xl font-semibold">Daily Battles</h3>
               <ul className="space-y-3">
                 {[
-                  "Wake up early when you don't want to",
+                  "Wake up early when you don&apos;t want to",
                   "Exercise when your body resists",
                   "Study when your mind wants to relax",
                   "Face your fears head-on",
@@ -213,7 +214,7 @@ const StayingHardPage: React.FC = () => {
             {
               phase: "ROCK BOTTOM",
               description:
-                "300 pounds, depressed, living a lie. The mirror showed David the truth he'd been avoiding.",
+                "300 pounds, depressed, living a lie. The mirror showed David the truth he&apos;d been avoiding.",
             },
             {
               phase: "THE AWAKENING",
@@ -255,18 +256,18 @@ const StayingHardPage: React.FC = () => {
       <section className="bg-red-900 px-6 py-16">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-4xl font-black mb-6">
-            WHO'S GONNA CARRY THE BOATS?
+            WHO&apos;S GONNA CARRY THE BOATS?
           </h2>
           <p className="text-xl mb-8 text-red-100">
-            The question isn't whether you have what it takes. The question is
-            whether you're willing to find out.
+            The question isn&apos;t whether you have what it takes. The question
+            is whether you&apos;re willing to find out.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 mt-12">
             <div className="bg-black/30 p-6 rounded-lg">
               <h3 className="font-bold text-lg mb-3">Start Today</h3>
               <p className="text-red-100">
-                Don't wait for motivation. Action creates momentum.
+                Don&apos;t wait for motivation. Action creates momentum.
               </p>
             </div>
             <div className="bg-black/30 p-6 rounded-lg">
@@ -289,8 +290,8 @@ const StayingHardPage: React.FC = () => {
       <footer className="bg-black px-6 py-8 border-t border-gray-800">
         <div className="mx-auto max-w-7xl text-center">
           <p className="text-gray-400">
-            "The most important conversations you'll ever have are the ones
-            you'll have with yourself." - David Goggins
+            &ldquo;The most important conversations you&apos;ll ever have are
+            the ones you&apos;ll have with yourself.&rdquo; - David Goggins
           </p>
         </div>
       </footer>
