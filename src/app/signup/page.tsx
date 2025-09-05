@@ -30,7 +30,7 @@ export default function SignupPage() {
 
     try {
       const response = await axios.post<{ success: boolean }>(
-        "/api/users/login",
+        "/api/users/signup",
         user
       );
       
