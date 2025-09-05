@@ -11,19 +11,20 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
 import Link from "next/link";
-import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export default function LoginPage() {
+export default function SignupPage() {
   const [user, setUser] = useState({
     email: "",
+    username: "",
     password: "",
   });
   const router = useRouter();
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -32,12 +33,13 @@ export default function LoginPage() {
         "/api/users/login",
         user
       );
+      
       if (response.data.success) {
-        toast.success("Account created successfully");
-        router.push("/profile");
+        toast.success("Account created successfully")
+        router.push("/");
       }
     } catch (err) {
-      console.error("Login failed ", err);
+      console.error("Signupo failed", err);
     }
   };
 
@@ -45,13 +47,13 @@ export default function LoginPage() {
     <div className="h-screen flex justify-center items-center m-auto">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
+          <CardTitle>Create your account</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Enter your email below to create your account
           </CardDescription>
           <CardAction>
             <Button variant="link">
-              <Link href="/signup">Sign Up</Link>
+              <Link href="/login">Login</Link>
             </Button>
           </CardAction>
         </CardHeader>
@@ -70,14 +72,21 @@ export default function LoginPage() {
                 />
               </div>
               <div className="grid gap-2">
+                <Label htmlFor="username">username</Label>
+                <Input
+                  id="username"
+                  type="text"
+                  value={user.username}
+                  onChange={(e) =>
+                    setUser({ ...user, username: e.target.value })
+                  }
+                  placeholder="rishavjbn"
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a>
                 </div>
                 <Input
                   id="password"
@@ -94,10 +103,10 @@ export default function LoginPage() {
         </CardContent>
         <CardFooter className="flex-col gap-2">
           <Button className="w-full" onClick={handleSubmit}>
-            Login
+            Signup
           </Button>
           <Button variant="link" size="sm" className="w-full">
-            <Link href="/signup"> Create an Account</Link>
+            <Link href="/login"> Already have Account</Link>
           </Button>
         </CardFooter>
       </Card>
