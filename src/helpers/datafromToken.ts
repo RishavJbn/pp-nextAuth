@@ -13,7 +13,7 @@ export const datafromToken = (req: NextRequest): string => {
       token,
       process.env.ACCESS_TOKEN_SECRET!
     ) as IDecodedToken;
-    return decodedToken.id;
+    return decodedToken.user as string;
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(error.message);

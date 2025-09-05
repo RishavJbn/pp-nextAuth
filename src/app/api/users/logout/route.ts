@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import toast from "react-hot-toast";
+// Removed unused import of react-hot-toast
 
 export async function GET() {
   try {
@@ -12,7 +12,7 @@ export async function GET() {
       httpOnly: true,
       expires: new Date(0),
     });
-    toast.success("Logged Out Successfully");
+    // Removed client-side toast usage; handle notifications in frontend
 
     return response;
   } catch (error) {

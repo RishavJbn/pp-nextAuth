@@ -5,13 +5,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 connectDB();
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
     const userId = await datafromToken(req);
     const user = await User.findOne({ _id: userId }).select("-password");
-    console.log(user);
+    console.log("user is here :",user);
     if (!user) {
-      return NextResponse.json({ error: "user not found " }, { status: 400 });
+      return NextResponse.json({ error: "user not found ji for genius" }, { status: 400 });
     }
     return NextResponse.json({
       message: "User found ",
@@ -20,6 +20,6 @@ export async function GET(req: NextRequest) {
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Internal Server Error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: message }, { status: 400 });
   }
 }
