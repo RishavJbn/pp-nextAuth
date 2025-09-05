@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
       },
       process.env.ACCESS_TOKEN_SECRET!,
       {
-        expiresIn: process.env.ACCESS_TOKEN_EXPIRY!,
+        expiresIn:"1d",
       }
     );
     const response = NextResponse.json({
@@ -51,7 +51,9 @@ export async function POST(req: NextRequest) {
     });
 
     return response;
-  } catch (error: unknown) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Internal Server Error";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

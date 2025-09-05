@@ -8,39 +8,36 @@ interface SendEmailParams {
   userId: string;
 }
 
-export const sendEmail = async ({email, emailType, userId}: SendEmailParams) => {
+export const sendEmail = async ({ email, emailType, userId }: SendEmailParams): Promise<unknown> => {
   try {
+    const hashedToken = await bcrypt.hash(userId.toString(), 10);
 
-            const hashedToken = await bcrypt.hash(userId.toString(), 10);
-
-            if (emailType === "VERIFY") {
-              await User.findByIdAndUpdate(userId, {
-                verifyToken: hashedToken,
-                verifyTokenExpiry: Date.now() + 3600000,
-              });
-            } else if (emailType === "RESET") {
-              await User.findByIdAndUpdate(userId, {
-                forgotPasswordToken: hashedToken,
-                forgotPasswordTokenExpiry: Date.now() + 3600000,
-              });
-            }
-
+    if (emailType === "VERIFY") {
+      await User.findByIdAndUpdate(userId, {
+        verifyToken: hashedToken,
+        verifyTokenExpiry: Date.now() + 3600000,
+      });
+    } else if (emailType === "RESET") {
+      await User.findByIdAndUpdate(userId, {
+        forgotPasswordToken: hashedToken,
+        forgotPasswordTokenExpiry: Date.now() + 3600000,
+      });
+    }
 
     const transporter = nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
       auth: {
-        user: process.env.MAILTRAP_USER,
-        pass: process.env.MAILTRAP_PASS,
+        user: process.env.MAILTRAP_USER as string,
+        pass: process.env.MAILTRAP_PASS as string,
       },
     });
 
     const emailOptions = {
-      from: "hi@demomailtrap.co", // sender address
-      to: email, // list of receivers
-      subject:
-        emailType === "VERIFY" ? "Verify your Email" : "Reset your password", // Subject line
-      text: "Hello world?", // plain text body
+      from: "hi@demomailtrap.co",
+      to: email,
+      subject: emailType === "VERIFY" ? "Verify your Email" : "Reset your password",
+      text: "Hello world?",
       html: `<p>Click <a href="${
         process.env.DOMAIN
       }/verifyemail?token=${hashedToken}">here</a> to ${
@@ -49,14 +46,17 @@ export const sendEmail = async ({email, emailType, userId}: SendEmailParams) => 
             or copy and paste the link below in your browser. <br> ${
               process.env.DOMAIN
             }/verifyemail?token=${hashedToken}
-            </p>`, // html body
+            </p>`,
     };
- const mailResponse =   await transporter.sendMail(emailOptions);
- return mailResponse;
-  } 
-  
-  catch (error: any) {
+
+    const mailResponse = await transporter.sendMail(emailOptions);
+    return mailResponse;
+  } catch (error) {
     console.error("Error sending email:", error);
-    throw new Error(error.message);
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("An unknown error occurred while sending email.");
+    }
   }
 };
