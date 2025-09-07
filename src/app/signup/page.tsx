@@ -28,14 +28,26 @@ export default function SignupPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Email regex validation
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (!emailRegex.test(user.email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    // Password length validation
+    if (user.password.length < 6) {
+      toast.error("Password must be at least 6 characters.");
+      return;
+    }
+
     try {
       const response = await axios.post<{ success: boolean }>(
         "/api/users/signup",
         user
       );
-      
+
       if (response.data.success) {
-        toast.success("Account created successfully")
+        toast.success("Account created successfully");
         router.push("/");
       }
     } catch (err) {

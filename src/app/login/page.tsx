@@ -27,6 +27,18 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Email regex validation
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (!emailRegex.test(user.email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    // Password length validation
+    if (user.password.length < 6) {
+      toast.error("Password must be at least 6 characters.");
+      return;
+    }
+
     try {
       const response = await axios.post<{ success: boolean }>(
         "/api/users/login",
@@ -38,6 +50,7 @@ export default function LoginPage() {
       }
     } catch (err) {
       console.error("Login failed ", err);
+      toast.error("invalid credentials");
     }
   };
 
